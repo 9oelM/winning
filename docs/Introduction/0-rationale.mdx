@@ -1,0 +1,98 @@
+---
+id: 0-rationale
+title: Rationale
+sidebar_label: Rationale
+slug: /
+---
+
+It has come to an era where there are many useful frontend frameworks, to name a few: [React](https://reactjs.org), [Flutter](https://flutter.dev), [Vue](https://vuejs.org), ... and so many more! Life as a developer has been never comforatble with these great tools.
+
+## Common problems in modern frontend applications
+
+However, it's become an undeniable fact that most developers suffer from common set of problems, knowingly or unknowingly, regardless:
+
+- Where should **I handle side effects**? i.e. where should I send a network request? Inside or outside a component?
+- What **could and should be tested**? i.e. should I unit-test everything?
+- How should I effectively **style and share components** with minimal bundle size?
+- How could I **maximize reusability** of a component?
+- How should I **structure my project**? i.e. how do I structure out folders for components?
+- How should I **rigorously handle errors** in components or logics?
+- How should I **handle local and global states**?
+- How could I maintain **application's performance at a high level** while adding more components and logics?
+
+An important point is that these are not framework-specific. In any component-based frontend frameworks/libaries, there is no doubt that these problems persist.
+
+### Simple example to demonstrate a problem
+
+Let's have this simple button and [Bacon Ipsum](baconipsum.com/json-api) as an example ([deployed here](https://csb-wwwt3.netlify.app/)).
+
+:::note
+
+Often, you are going to see React and Typescript (or Javascript for simple examples like below, but it is less likely to be used due to the principles we value) being used as an example, but we will keep it in the way that **it will still be very much applicable to a general modern frontend application regardless of a programming language**, which is what this documentation aims to help.
+
+If you, by any chance, would want to contribute in documenting more frameworks, it's more than welcome. Please proceed to do so.
+
+:::
+
+export const EmbededCodeSandbox = () => (
+  <div style={{
+    width: '100%',
+    minHeight: 400,
+  }} >
+<iframe src="https://codesandbox.io/embed/winning-simple-button-and-text-example-wwwt3?fontsize=14&hidenavigation=1&theme=dark"
+     style={{
+       width: '100%',
+      height: 500, 
+      border: 0, 
+      borderRadius: 4, 
+      overflow: 'hidden',
+     }}
+     title="[Winning] Simple button and text example"
+     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+   ></iframe>
+</div>);
+
+<EmbededCodeSandbox />
+
+---
+
+Let's look at the code.
+
+```js
+import React, { useState, useCallback } from "react";
+import "./styles.css";
+
+export default function App() {
+  const [text, setText] = useState("");
+
+  const handleFetchText = useCallback(async () => {
+    const result = await fetch(
+      `https://baconipsum.com/api/?type=meat-and-filler`
+    ).then((r) => r.json());
+    setText(result);
+  }, []);
+
+  return (
+    <div>
+      <button onClick={handleFetchText}>Click me to get a new text</button>
+      <p>{text}</p>
+    </div>
+  );
+}
+```
+
+The code is quite simple, but there are lots of things to discuss here:
+1. Network requests and UI reside inside the same component. Is that going to be a problem or not in the future, when the application gets bigger?
+2. Is this component going to be reusable? If not, how can we make it reusable? If yes, why is it reusable? Also, which part in the code could be reusable, and which part, not reusable?
+3. Is there going to be a way to share the style of the button more declaratively and easily?
+4. If an error happens while fetching the data from Bacon Ipsum, how could we process it and notify the user?
+5. How should this component be tested, and which parts of it should be tested?
+
+Since this example is a bit short, it is 100% normal that you may not be able to fully understand the entire concept of this documentation. Don't worry, we will go through many more examples. Let's get started.
+
+## Opinionated thoughts as a guide
+
+To answer these problems and elegantly apply all of the answers, this entire website serves as a documentation where very opinionated thoughts on the best practices to solve these problems are aggregated.
+
+Despite the nature of being opinionated, these principles have a powerful reasons to back them (which are all going to be explained). So hang on tight, we are just about to get started.

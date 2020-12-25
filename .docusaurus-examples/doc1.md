@@ -1,7 +1,7 @@
 ---
-id: doc1
-title: Style Guide
-sidebar_label: Style Guide
+id: introduction-0
+title: Rationale
+sidebar_label: Rationale
 slug: /
 ---
 

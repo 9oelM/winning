@@ -1,0 +1,73 @@
+---
+id: 1-ui-is-a-function
+title: UI is a function
+---
+import { useState, useCallback } from 'react'
+import { Math } from '../../src/components/Math.js'
+import { Center } from '../../src/components/Center.js'
+import { Linebreak } from '../../src/components/Linebreak.js'
+
+So what is a function, and why is it so important that it needs to take up the whole page to be explained? Because UI as a whole, or any components, one by one, are functions.
+
+## Back to the elementary school
+
+Maybe it's a middle school, but whatever. You may probably have learned about a function.
+
+A function receives an input (usually we call it X) and gives an output (usually Y).
+
+<Math code='y=f(x)' />
+<Linebreak />
+
+Now, let's look at this little button example. 
+
+```js
+export const LittleButton = () => {
+  const [text, setText] = React.useState(`initial text, `);
+  
+  const handleButtonClick = React.useCallback(() => {
+    setText((prev) => `${prev} more text,`);
+  }, []);
+  
+  return (
+    <button onClick={handleButtonClick}>
+      {text}
+    </button>
+  );
+};
+```
+
+export const LittleButton = () => {
+  const [text, setText] = React.useState(`initial text, `);
+  const handleButtonClick = React.useCallback(() => {
+    setText((prev) => `${prev} more text,`);
+  }, []);
+  return (
+    <button onClick={handleButtonClick}>
+      {text}
+    </button>
+  );
+};
+
+<Center>
+<LittleButton />
+</Center>
+  
+
+You do two things:
+1. You **click on the button**.
+2. Then the **text inside the button changes**.
+
+Then, we could frame this as:
+
+<Math code='UI = f(buttonText)' />
+
+<Linebreak />
+
+More familar one would be:
+
+```ts
+const MyButton: FC = ({ isClicked }) => {
+
+}
+```
+
