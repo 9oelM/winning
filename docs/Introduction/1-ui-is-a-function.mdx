@@ -59,15 +59,44 @@ You do two things:
 
 Then, we could frame this as:
 
-<Math code='UI = f(buttonText)' />
+<Math code='LittleButton = f(text)' />
 
 <Linebreak />
 
-More familar one would be:
+If we wanted to make it a bit more similar to the equation above, we could also write the code as:
 
-```ts
-const MyButton: FC = ({ isClicked }) => {
+```js
+export const LittleButtonLogic = () => {
+  const [text, setText] = React.useState(`initial text, `);
+  const handleButtonClick = React.useCallback(() => {
+    setText((prev) => `${prev} more text,`);
+  }, []);
 
-}
+  return (
+    <LittleButtonWithoutLogic onClick={handleButtonClick}>
+      {text}
+    </LittleButtonWithoutLogic>
+  );
+};
+
+export const LittleButtonWithoutLogic = ({
+  text,
+  onButtonClick
+}) => {
+  return (
+    <button onClick={onButtonClick}>
+      {text}
+    </button>
+  );
+};
 ```
 
+Now let's look at `LittleButtonWithoutLogic`.
+
+It receives `text` as an input and directly renders it, so it now looks more similar to <Math code='LittleButton = f(text)' />.
+
+But what about `onButtonClick`? Isn't it also an input to the component? Yes, it is an input, but if we think carefully, we will find that it does not directly affect the UI, which is what's seen by the user. We would rather say that:
+
+<Math code='text = g(previousText)' /> and
+<Linebreak /> 
+<Math code='UI = f(text)' />
