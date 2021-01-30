@@ -10,11 +10,11 @@ module.exports = {
   projectName: 'winning', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
-      logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
-      },
+      title: 'Winning',
+      // logo: {
+      //   alt: 'Winning logo',
+      //   src: 'img/logo.svg',
+      // },
       items: [
         {
           to: 'docs/',
@@ -24,7 +24,7 @@ module.exports = {
         },
         // {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/9oelM/winning',
           label: 'GitHub',
           position: 'right',
         },
@@ -80,6 +80,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Winning. Built with Docusaurus.`,
     },
   },
+  themes: ['@docusaurus/theme-live-codeblock'],
   presets: [
     [
       '@docusaurus/preset-classic',

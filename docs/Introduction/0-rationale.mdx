@@ -28,54 +28,39 @@ Let's have this simple button and [Bacon Ipsum](baconipsum.com/json-api) as an e
 
 :::note
 
-Often, you are going to see React and Typescript (or Javascript for simple examples like below, but it is less likely to be used due to the principles we value) being used as an example, but we will keep it in the way that **it will still be very much applicable to a general modern frontend application regardless of a programming language**, which is what this documentation aims to help.
+Often, you are going to see React and Typescript (or Javascript for simple examples like below, but it is less likely to be used due to the principles we value) being used as an example, but we will try to keep it in the way that **it will still be very much applicable to a general modern frontend application regardless of a programming language**, which is what this documentation aims to help.
 
 If you, by any chance, would want to contribute in documenting more frameworks, it's more than welcome. Please proceed to do so.
 
 :::
 
-export const EmbededCodeSandbox = () => (
-  <div style={{
-    width: '100%',
-    minHeight: 400,
-  }} >
-<iframe src="https://codesandbox.io/embed/winning-simple-button-and-text-example-wwwt3?fontsize=14&hidenavigation=1&theme=dark"
-     style={{
-       width: '100%',
-      height: 500, 
-      border: 0, 
-      borderRadius: 4, 
-      overflow: 'hidden',
-     }}
-     title="[Winning] Simple button and text example"
-     allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-     sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-   ></iframe>
-</div>);
 
-<EmbededCodeSandbox />
+<Button />
 
 ---
 
-Let's look at the code.
+Let's look at the code for this button.
 
-```js
-import React, { useState, useCallback } from "react";
-import "./styles.css";
 
-export default function App() {
-  const [text, setText] = useState("");
-
-  const handleFetchText = useCallback(async () => {
+```jsx live
+() => {
+  const [text, setText] = React.useState("");
+  const handleFetchText = React.useCallback(async () => {
     const result = await fetch(
-      `https://baconipsum.com/api/?type=meat-and-filler`
+      'https://baconipsum.com/api/?type=meat-and-filler'
     ).then((r) => r.json());
-    setText(result);
+    setText(result[0]);
   }, []);
-
   return (
     <div>
-      <button onClick={handleFetchText}>Click me to get a new text</button>
+      <button 
+        style={{
+          backgroundColor: 'cyan',
+          width: '200px',
+          height: '200px',
+        }}
+        onClick={handleFetchText}
+      >Click me to get a new text</button>
       <p>{text}</p>
     </div>
   );

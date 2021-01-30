@@ -1,33 +1,36 @@
-# Website
+# Things to be explained
 
-This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
+- [ ] Impure and pure components are good for starting off development where requirements are not clearly set
+- [ ] Impure and pure components fully embrace Storybook (i.e. CDD)
+- [ ] Separating Pure components from the style
+  - [ ] Styles block you from reusing components
+- [ ] Split components down to an extreme end.
+- [ ] Rethinking reusability: a step forward from Atomic React
+  - [ ] The power of localFragments
+- [ ] Use of HOCs, auto optimization and auto fallbacks
+- [ ] Using verbose names
+  - [ ] Caring others, thinking from others' perspectives
+  - [ ] The only option you have in the end is to search for the word.
+- [ ] Global states
+  - [ ] 'Logics too big' to even be in impure components should be moved to another place (i.e. somewhere like Redux middleware). Your component cannot and should not contain all logics for your app.
+  - [ ] Ephemeral and persistent states
+  - [ ] Selecting and composing
+  - [ ] Storing all network requests' information in the global state
+  - [ ] Almost no UI components need to handle network request
+  - [ ] Introduction to the concept of buckets
+- [ ] Handling errors
+  - [ ] All software goes wrong.
+  - [ ] Tuning components and states for errors
+  - [ ] Error-first design
+- [ ] Typing
+  - [ ] A project cannot succeed almost always without a rigorous typing system
+- [ ] One thing should do only one thing well
+- [ ] After all, frontend is nothing but a state management game
 
-## Installation
+## React specific questions and tips
 
-```console
-yarn install
-```
-
-## Local Development
-
-```console
-yarn start
-```
-
-This command starts a local development server and open up a browser window. Most changes are reflected live without having to restart the server.
-
-## Build
-
-```console
-yarn build
-```
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-## Deployment
-
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+- [ ] Is impure component different from Redux container component?
+- [ ] Separating components to an extreme end will potentially maintain performance
+- [ ] Avoiding useContext
+- [ ] Do not ever start writing a plain variable inside a component without `useCallback` or `useMemo`
+  - [ ] Thinking about others again (especially new developers)
